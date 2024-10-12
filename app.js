@@ -25,7 +25,6 @@ boxes.forEach((box)=> {
         }
         box.disabled=true;
         count++;
-        checkWinner();
 
         let isWinner=checkWinner();
 
@@ -68,22 +67,22 @@ const displayWinner=(winner)=>{
     disableBoxes();
 };
 
-const checkWinner = ( () =>{
-    for (let pattern of winPatterns)
-    {
-        let posval1= boxes[pattern[0]].innerText;
-        let posval2= boxes[pattern[1]].innerText;
-        let posval3= boxes[pattern[2]].innerText;
+const checkWinner = () => {
+    for (let pattern of winPatterns) {
+        let posval1 = boxes[pattern[0]].innerText;
+        let posval2 = boxes[pattern[1]].innerText;
+        let posval3 = boxes[pattern[2]].innerText;
 
-        if(posval1 !="" && posval2 !="" && posval3 !="" )
-        {
-            if(posval1===posval2 && posval2===posval3)
-            {
-            displayWinner(posval1);
+        if (posval1 !== "" && posval2 !== "" && posval3 !== "") {
+            if (posval1 === posval2 && posval2 === posval3) {
+                displayWinner(posval1);
+                return true;  // Return true if there's a winner
             }
         }
     }
-});
+    return false;  // Return false if no winner
+};
+
 
 reset.addEventListener("click",resetgame);
 newgame.addEventListener("click",resetgame);
